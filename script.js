@@ -3,7 +3,7 @@ const activities = [
     {
         id: 1,
         name: 'Beach Snorkeling at Yellow Leaf Bay',
-        emoji: '🤿',
+        image: 'images/activities/snorkeling.jpg',
         category: 'beach',
         tags: ['beach', 'family', 'romantic'],
         price: 45,
@@ -18,7 +18,7 @@ const activities = [
     {
         id: 2,
         name: 'Rainforest Hiking & Waterfall Tour',
-        emoji: '🥾',
+        image: 'images/activities/rainforest-hiking.jpg',
         category: 'adventure',
         tags: ['adventure', 'family'],
         price: 35,
@@ -33,7 +33,7 @@ const activities = [
     {
         id: 3,
         name: 'Volcano Adventure Tour',
-        emoji: '🌋',
+        image: 'images/activities/volcano-tour.jpg',
         category: 'adventure',
         tags: ['adventure'],
         price: 60,
@@ -48,7 +48,7 @@ const activities = [
     {
         id: 4,
         name: 'Helicopter Island Tour',
-        emoji: '🚁',
+        image: 'images/activities/helicopter-tour.jpg',
         category: 'adventure',
         tags: ['adventure', 'romantic'],
         price: 150,
@@ -63,7 +63,7 @@ const activities = [
     {
         id: 5,
         name: 'Sunset Dinner Cruise',
-        emoji: '🚢',
+        image: 'images/activities/dinner-cruise.jpg',
         category: 'dining',
         tags: ['dining', 'romantic'],
         price: 85,
@@ -78,7 +78,7 @@ const activities = [
     {
         id: 6,
         name: 'Local Fish & Rice Experience',
-        emoji: '🍚',
+        image: 'images/activities/fish-and-rice.jpg',
         category: 'dining',
         tags: ['dining', 'family'],
         price: 25,
@@ -93,7 +93,7 @@ const activities = [
     {
         id: 7,
         name: 'Pan-Asian Fusion Restaurant Tour',
-        emoji: '🍜',
+        image: 'images/activities/pan-asian-fusion.jpg',
         category: 'dining',
         tags: ['dining', 'romantic'],
         price: 65,
@@ -108,7 +108,7 @@ const activities = [
     {
         id: 8,
         name: 'Local History Museum & Walking Tour',
-        emoji: '🏛️',
+        image: 'images/activities/museum-tour.jpg',
         category: 'cultural',
         tags: ['cultural', 'family'],
         price: 20,
@@ -123,7 +123,7 @@ const activities = [
     {
         id: 9,
         name: 'Zip-Lining Through the Rainforest',
-        emoji: '🪂',
+        image: 'images/activities/zip-lining.jpg',
         category: 'adventure',
         tags: ['adventure'],
         price: 55,
@@ -138,7 +138,7 @@ const activities = [
     {
         id: 10,
         name: 'Chartered Fishing Expedition',
-        emoji: '🎣',
+        image: 'images/activities/fishing-expedition.jpg',
         category: 'adventure',
         tags: ['adventure'],
         price: 95,
@@ -153,7 +153,7 @@ const activities = [
     {
         id: 11,
         name: 'Couples Massage & Spa Package',
-        emoji: '💆',
+        image: 'images/activities/couples-spa.jpg',
         category: 'romantic',
         tags: ['romantic'],
         price: 120,
@@ -168,7 +168,7 @@ const activities = [
     {
         id: 12,
         name: 'Romantic Sunset Beach Walk & Picnic',
-        emoji: '🌅',
+        image: 'images/activities/sunset-beach-walk.jpg',
         category: 'romantic',
         tags: ['romantic', 'beach'],
         price: 50,
@@ -210,7 +210,9 @@ function displayActivities(activitiesToShow) {
 
         card.innerHTML = `
             <div class="activity-image">
-                ${activity.emoji}
+                <img
+                    src="${activity.image}"
+                    alt="${activity.name}">
 
                 <button
                     class="favorite-btn ${isSaved ? 'saved' : ''}"
@@ -323,8 +325,12 @@ function openActivityModal(activityId) {
 
     document.getElementById('modalTitle').textContent = activity.name;
 
-    document.getElementById('modalImage').textContent = activity.emoji;
-    document.getElementById('modalImage').style.fontSize = '100px';
+    const modalImage = document.getElementById('modalImage');
+
+    modalImage.style.backgroundImage = `url("${activity.image}")`;
+    modalImage.style.backgroundSize = 'cover';
+    modalImage.style.backgroundPosition = 'center';
+    modalImage.style.backgroundRepeat = 'no-repeat';
 
     document.getElementById('modalRating').textContent = activity.rating;
     document.getElementById('modalDuration').textContent = activity.duration;
