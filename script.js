@@ -406,3 +406,49 @@ function showHome() {
     displayActivities(activities);
     window.scrollTo(0, 0);
 }
+
+function toggleFavorite(event, activityId) {
+    event.stopPropagation();
+
+    const index = savedActivities.indexOf(activityId);
+
+    if (index > -1) {
+        savedActivities.splice(index, 1);
+    } else {
+        savedActivities.push(activityId);
+    }
+
+    localStorage.setItem(
+        'savedActivities',
+        JSON.stringify(savedActivities)
+    );
+
+    displayActivities(activities);
+}
+
+function loadSavedActivities() {
+    const saved = localStorage.getItem('savedActivities');
+
+    if (saved) {
+        savedActivities = JSON.parse(saved);
+    }
+}
+
+function showSavedActivities() {
+    const saved = activities.filter(
+        activity => savedActivities.includes(activity.id)
+    );
+
+    if (saved.length === 0) {
+        document.getElementById('activitiesGrid').innerHTML = `
+            <div
+                class="empty-message"
+                style="grid-column: 1/-1;">
+                No saved activities yet. Click the heart icon on any
+                activity to save it!
+            </div>
+        `;
+    } else {
+        displayActivities(saved);
+    }
+}
