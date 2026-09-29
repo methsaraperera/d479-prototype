@@ -9,13 +9,13 @@
 <body>
     <header>
         <div class="header-container">
-            <a href="#" class="logo">Taniti Tourism</a>
+            <a href="#" class="logo" onclick="showHome(); return false;">Taniti Tourism</a>
             <nav>
-                <a href="#">Home</a>
-                <a href="#">Activities</a>
-                <a href="#">Accommodations</a>
-                <a href="#">My Favorites</a>
-                <a href="#">Contact</a>
+                <a href="#" onclick="showHome(); return false;">Home</a>
+                <a href="#" onclick="filterByCategory('all'); return false;">Activities</a>
+                <a href="#" onclick="alert('Accommodations page - coming soon'); return false;">Accommodations</a>
+                <a href="#" onclick="showSavedActivities(); return false;">My Favorites</a>
+                <a href="#" onclick="alert('Contact us at info@taniti.tourism'); return false;">Contact</a>
             </nav>
         </div>
     </header>
