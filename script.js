@@ -180,6 +180,161 @@ const activities = [
         requirements: 'Adults only, Book in advance for best experience',
         priceCategory: 'mid'
     }
+    
 ];
 
+let savedActivities = [];
+let currentFilter = 'all';
 
+// INITIALIZE
+document.addEventListener('DOMContentLoaded', function () {
+    const today = new Date().toISOString().split('T')[0];
+
+    document
+        .getElementById('bookingDate')
+        .setAttribute('min', today);
+
+    loadSavedActivities();
+    displayActivities(activities);
+});
+
+function displayActivities(activitiesToShow) {
+    const grid = document.getElementById('activitiesGrid');
+    grid.innerHTML = '';
+
+    activitiesToShow.forEach(activity => {
+        const isSaved = savedActivities.includes(activity.id);
+
+        const card = document.createElement('div');
+        card.className = 'activity-card';
+
+        card.innerHTML = `
+            <div class="activity-image">
+                ${activity.emoji}
+
+                <button
+                    class="favorite-btn ${isSaved ? 'saved' : ''}"
+                    onclick="toggleFavorite(event, ${activity.id})">
+                    ${isSaved ? '❤️' : '🤍'}
+                </button>
+            </div>
+
+            <div class="activity-content">
+                <div class="activity-title">
+                    ${activity.name}
+                </div>
+
+                <div class="activity-rating">
+                    ${activity.rating}
+                </div>
+
+                <div class="activity-meta">
+                    ${activity.tags
+                        .map(tag => `<span class="meta-tag">${tag}</span>`)
+                        .join('')}
+                </div>
+
+                <div class="price-location">
+                    <span class="price">
+                        $${activity.price}/person
+                    </span>
+
+                    <span class="location">
+                        📍 ${activity.location}
+                    </span>
+                </div>
+
+                <div class="activity-info">
+                    <span>⏱️ ${activity.duration}</span>
+                </div>
+
+                <button
+                    class="book-btn"
+                    onclick="openActivityModal(${activity.id})">
+                    Book Now
+                </button>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+function filterActivities() {
+    const selects = document.querySelectorAll('.filters select');
+
+    const typeSelect = selects[0].value;
+    const durationSelect = selects[1].value;
+    const priceSelect = selects[2].value;
+
+    let filtered = activities;
+
+    if (typeSelect) {
+        filtered = filtered.filter(
+            activity => activity.category === typeSelect
+        );
+    }
+
+    if (priceSelect) {
+        filtered = filtered.filter(
+            activity => activity.priceCategory === priceSelect
+        );
+    }
+
+    if (durationSelect === 'short') {
+        filtered = filtered.filter(
+            activity => parseFloat(activity.duration) < 2
+        );
+    } else if (durationSelect === 'medium') {
+        filtered = filtered.filter(activity => {
+            const hours = parseFloat(activity.duration);
+            return hours >= 2 && hours <= 4;
+        });
+    } else if (durationSelect === 'long') {
+        filtered = filtered.filter(
+            activity => parseFloat(activity.duration) > 4
+        );
+    }
+
+    displayActivities(filtered);
+}
+
+function filterByCategory(category) {
+    if (category === 'all') {
+        displayActivities(activities);
+        return;
+    }
+
+    const filtered = activities.filter(
+        activity => activity.tags.includes(category)
+    );
+
+    displayActivities(filtered);
+}
+
+function loadSavedActivities() {
+    const saved = localStorage.getItem('savedActivities');
+
+    if (saved) {
+        savedActivities = JSON.parse(saved);
+    }
+}
+
+function showSavedActivities() {
+    const saved = activities.filter(
+        activity => savedActivities.includes(activity.id)
+    );
+
+    if (saved.length === 0) {
+        document.getElementById('activitiesGrid').innerHTML = `
+            <div
+                class="empty-message"
+                style="grid-column: 1/-1;">
+                No saved activities yet. Click the heart icon on any
+                activity to save it!
+            </div>
+        `;
+    } else {
+        displayActivities(saved);
+    }
+}
