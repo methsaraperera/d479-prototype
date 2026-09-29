@@ -212,3 +212,14 @@ nav a:hover {
 .info-box li:last-child {
     border-bottom: none;
 }
+
+
+/* FOOTER */
+footer {
+    background: #333;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 12px;
+}
