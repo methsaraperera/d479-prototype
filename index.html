@@ -125,6 +125,49 @@
         </div>
     </div>
 
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button class="close-btn" onclick="">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-image" id="modalImage"></div>
+                
+                <div class="detail-info">
+                    <p><strong>Rating:</strong> <span id="modalRating"></span></p>
+                    <p><strong>Duration:</strong> <span id="modalDuration"></span></p>
+                    <p><strong>Price:</strong> <span id="modalPrice" style="color: #0066cc; font-weight: bold;"></span></p>
+                    <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Description</h4>
+                    <p id="modalDescription"></p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>What's Included</h4>
+                    <p id="modalIncluded"></p>
+                </div>
+
+                <div class="detail-section">
+                    <h4>Age & Fitness Requirements</h4>
+                    <p id="modalRequirements"></p>
+                </div>
+
+                <div class="booking-widget">
+                    <h4>Book This Activity</h4>
+                    <div class="date-time-inputs">
+                        <input type="date" id="bookingDate" min="">
+                        <input type="time" id="bookingTime" value="10:00">
+                    </div>
+                    <button class="book-now-btn" onclick="">Complete Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Taniti Tourism Board. All rights reserved. | Design inspired by user feedback and best UX practices.</p>
