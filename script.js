@@ -401,3 +401,8 @@ function showSavedActivities() {
         displayActivities(saved);
     }
 }
+
+function showHome() {
+    displayActivities(activities);
+    window.scrollTo(0, 0);
+}
