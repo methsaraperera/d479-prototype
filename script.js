@@ -312,6 +312,69 @@ function filterByCategory(category) {
     displayActivities(filtered);
 }
 
+function openActivityModal(activityId) {
+    const activity = activities.find(
+        activity => activity.id === activityId
+    );
+
+    if (!activity) {
+        return;
+    }
+
+    document.getElementById('modalTitle').textContent = activity.name;
+
+    document.getElementById('modalImage').textContent = activity.emoji;
+    document.getElementById('modalImage').style.fontSize = '100px';
+
+    document.getElementById('modalRating').textContent = activity.rating;
+    document.getElementById('modalDuration').textContent = activity.duration;
+
+    document.getElementById('modalPrice').textContent =
+        `$${activity.price} per person`;
+
+    document.getElementById('modalLocation').textContent =
+        activity.location;
+
+    document.getElementById('modalDescription').textContent =
+        activity.description;
+
+    document.getElementById('modalIncluded').textContent =
+        activity.included;
+
+    document.getElementById('modalRequirements').textContent =
+        activity.requirements;
+
+    document.getElementById('activityModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('activityModal').style.display = 'none';
+}
+
+function completeBooking() {
+    const date = document.getElementById('bookingDate').value;
+    const time = document.getElementById('bookingTime').value;
+
+    if (!date) {
+        alert('Please select a date for your booking');
+        return;
+    }
+
+    alert(
+        `Booking confirmed!\nDate: ${date}\nTime: ${time}\n\nYou will receive a confirmation email shortly.`
+    );
+
+    closeModal();
+}
+
+window.onclick = function (event) {
+    const modal = document.getElementById('activityModal');
+
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
+
 function loadSavedActivities() {
     const saved = localStorage.getItem('savedActivities');
 

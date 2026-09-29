@@ -133,7 +133,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle"></h2>
-                <button class="close-btn" onclick="">&times;</button>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="detail-image" id="modalImage"></div>
@@ -161,12 +161,12 @@
                 </div>
 
                 <div class="booking-widget">
-                    <h4>Book This Activity</h4>
+                    <h4>📅 Book This Activity</h4>
                     <div class="date-time-inputs">
                         <input type="date" id="bookingDate" min="">
                         <input type="time" id="bookingTime" value="10:00">
                     </div>
-                    <button class="book-now-btn" onclick="">Complete Booking</button>
+                    <button class="book-now-btn" onclick="completeBooking()">Complete Booking</button>
                 </div>
             </div>
         </div>
