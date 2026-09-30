@@ -502,3 +502,57 @@ footer {
 .book-now-btn:hover {
     background: #00aa55;
 }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .activities-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .categories {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+}
+
+/* SAVED ACTIVITIES PAGE */
+.saved-badge {
+    display: inline-block;
+    background: #ff4444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
